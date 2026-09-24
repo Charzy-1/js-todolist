@@ -11,11 +11,13 @@
   <div class="container">
     <p>My Todo List</p>
 
-    <input type="text" placeholder="Todo name" class="inputBox">
+    <input type="text" placeholder="Todo name" class="inputBox" onkeydown="
+      renderTodoWithEnterKey(event)
+    ">
 
     <button onclick="
       addButton()
-    ">Add</button>
+    " >Add</button>
 
     <div class="js-todos todos"></div>
   </div>

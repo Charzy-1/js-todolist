@@ -8,19 +8,24 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <p>My Todo List</p>
+  <div class="wrapper">
+    <h2>My Todo List</h2>
 
-    <input type="text" placeholder="Todo name" class="inputBox" onkeydown="
-      renderTodoWithEnterKey(event)
-    ">
-    <input type="date" class="dateBox">
+    <!-- CONTAINGER HOLDING THE INPUT AND ADD BUTTON -->
 
-    <button onclick="
-      addButton()
-    " >Add</button>
+    <div class="inputContainer">
+      <input type="text" placeholder="Todo name" class="inputBox name-input" onkeydown="
+        renderTodoWithEnterKey(event)
+      ">
 
-    <div class="js-todos todos"></div>
+      <input type="date" class="dateBox date-input">
+
+      <button onclick="
+        addButton()
+      "  class="add-button">Add</button>
+    </div>
+
+    <div class="js-todos todos-grid"></div>
   </div>
   
   

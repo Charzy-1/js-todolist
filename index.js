@@ -17,13 +17,14 @@ function renderTodoList() {
     const dueDate = todoObject.dueDate
 
     // CREATE SOME HTML CODE FOR EACH TODO
-    const html = 
-    `<p class='todo-item'>
-      ${name} ${dueDate}
+    const html = ` 
+      <div>${name}</div>
+      <div>${dueDate}</div>
+        
       <button onclick='
         myTodo.splice(${i}, 1);
         renderTodoList();
-      ' class='delete-button'>
+        ' class='delete-button'>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -34,11 +35,9 @@ function renderTodoList() {
           <path d="M9 6V4h6v2"></path>
         </svg>
       </button>
-    </p>`;
+    `;
     todoListHtml = todoListHtml + html;
   }
-
-  console.log(todoListHtml)
 
   // put the html on the webpage
   document.querySelector('.js-todos')

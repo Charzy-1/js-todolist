@@ -54,3 +54,15 @@ body {
   padding-top: 3%;
  }
 
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  cursor: pointer;
+  padding: 10px 15px;
+  color: red;
+  border: none;
+}

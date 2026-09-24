@@ -1,21 +1,29 @@
 // Create and empty array to store todos
-const myTodo = [];
+const myTodo = [{
+  name: 'Morning Pryer',
+  dueDate: '22-08-2026'
+}];
 
+renderTodoList()
+
+// FUNTION TO RENDER TODOLIST
 function renderTodoList() {
   let todoListHtml = '';
 
   // LOOP TRHOUGH THE ARRAY USING FOR LOOP
   for (let i = 0; i < myTodo.length; i++) {
-    const todo = myTodo[i];
+    const todoObject = myTodo[i];
+    const name = todoObject.name;
+    const dueDate = todoObject.dueDate
 
     // CREATE SOME HTML CODE FOR EACH TODO
     const html = 
-    `<p>
-      ${todo}
+    `<p class='todo-item'>
+      ${name} ${dueDate}
       <button onclick='
         myTodo.splice(${i}, 1);
         renderTodoList();
-      '>
+      ' class='delete-button'>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -39,13 +47,24 @@ function renderTodoList() {
 
 function addButton() {
   // Get hold of the todos from the user
-  const inputElement = document.querySelector('.inputBox');
-  const todoText = inputElement.value;
+  const inputElement = document.querySelector('.inputBox');const dateElement = document.querySelector('.dateBox');
 
-  myTodo.push(todoText);
+  const todoName = inputElement.value;
+  const dueDate = dateElement.value;
+
+  // TO AVOID USERS ADDING EMPTY INPUT
+  if (todoName === '') {
+    return;
+  }
+
+  myTodo.push({
+    name: todoName,
+    dueDate: dueDate
+  });
 
   // Clear the textbox after adding the todo
   inputElement.value = '';
+  dateElement.value = '';
 
   renderTodoList()
 }

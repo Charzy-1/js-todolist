@@ -1,10 +1,5 @@
 // Create and empty array to store todos
-const myTodo = [{
-  name: 'Morning Pryer',
-  dueDate: '22-08-2026'
-}];
-
-renderTodoList()
+const myTodo = [];
 
 // FUNTION TO RENDER TODOLIST
 function renderTodoList() {
@@ -13,12 +8,22 @@ function renderTodoList() {
   // LOOP TRHOUGH THE ARRAY USING FOR LOOP
   for (let i = 0; i < myTodo.length; i++) {
     const todoObject = myTodo[i];
+
     const name = todoObject.name;
     const dueDate = todoObject.dueDate
+    const completed = todoObject.completed;
 
     // CREATE SOME HTML CODE FOR EACH TODO
     const html = ` 
-      <div>${name}</div>
+      <div class="${completed ? 'completed' : ''}">
+        <input
+          type="checkbox"
+          ${completed ? 'checked' : ''}
+          onchange="toggleTodo(${i})"
+        >
+        ${name}
+      </div>
+
       <div>${dueDate}</div>
         
       <button onclick='
@@ -58,7 +63,8 @@ function addButton() {
 
   myTodo.push({
     name: todoName,
-    dueDate: dueDate
+    dueDate: dueDate,
+    completed: false
   });
 
   // Clear the textbox after adding the todo
@@ -66,6 +72,12 @@ function addButton() {
   dateElement.value = '';
 
   renderTodoList()
+}
+
+function toggleTodo(index) {
+  myTodo[index].completed = !myTodo[index].completed;
+
+  renderTodoList();
 }
 
 // FUNTION TO ADD THE MY TODOLIST ON THE PAGE WHEN THE ENTER BUTTON IS PRESSED

@@ -52,6 +52,7 @@ body {
  /* CONTENT STYLE BEGINS */
  h2 {
   text-align: center;
+  text-transform: uppercase;
  }
 .wrapper {
   display: flex;
@@ -104,4 +105,8 @@ body {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
 }

@@ -52,8 +52,8 @@ body {
  /* CONTENT STYLE BEGINS */
  h2 {
   text-align: center;
-  text-transform: uppercase;
  }
+ 
 .wrapper {
   display: flex;
   flex-direction: column;

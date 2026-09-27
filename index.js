@@ -15,7 +15,6 @@ function renderTodoList() {
 
     // CREATE SOME HTML CODE FOR EACH TODO
 
-    // I NEED TO ADD SOME EXTRA CODE BELOW THIS
     const html = ` 
       <div class="${completed ? 'completed' : ''}">
         <input

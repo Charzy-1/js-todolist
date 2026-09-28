@@ -53,6 +53,7 @@ body {
  h2 {
   text-align: center;
   text-transform: uppercase;
+  color: var(--cyan-80);
  }
  
 .wrapper {
@@ -70,7 +71,6 @@ body {
    grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-1);
   align-items: center;
-   width: 100%;
 }
 
 .todos-grid {

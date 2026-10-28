@@ -179,6 +179,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-1);
+  margin: 4px 0;
 }
 
 .anchor-btn {

@@ -9,86 +9,125 @@ todayDate.innerHTML = today.format('MMMM D, YYYY');
 
 
 // Create and empty array to store todos
-const myTodo = [];
+let myTodo = JSON.parse(localStorage.getItem('myTodo')) || [];
+// const myTodo = [];
 
 // FUNTION TO RENDER TODOLIST
+
 function renderTodoList() {
   let todoListHtml = '';
 
-  // LOOP TRHOUGH THE ARRAY USING FOR LOOP
   for (let i = 0; i < myTodo.length; i++) {
     const todoObject = myTodo[i];
 
     const name = todoObject.name;
-    const dueDate = todoObject.dueDate
+    const time = todoObject.time || '';
     const completed = todoObject.completed;
 
-    // CREATE SOME HTML CODE FOR EACH TODO
+    const html = `
+      <div class="todo-item ${completed ? 'completed' : ''}">
 
-    const html = ` 
-      <div class="${completed ? 'completed' : ''}">
         <input
           type="checkbox"
+          data-index="${i}"
+          class="todo-checkbox"
           ${completed ? 'checked' : ''}
-          onchange="toggleTodo(${i})"
         >
-        ${name}
-      </div>
 
-      <div>${dueDate}</div>
-        
-      <button onclick='
-        myTodo.splice(${i}, 1);
-        renderTodoList();
-        ' class='delete-button'>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2"
+        <div class="todo-details">
+          <div class="todo-name">${name}</div>
+
+          <div class="todo-time">
+            <svg width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>${time}</span>
+          </div>
+        </div>
+
+        <button type="button"
+          class="delete-button"
+          data-index="${i}"
+          aria-label="Delete ${name}">
+          <svg width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="3 6 5 6 21 6"></polyline>
-          <path d="M19 6l-1 14H6L5 6"></path>
-          <path d="M10 11v6"></path>
-          <path d="M14 11v6"></path>
-          <path d="M9 6V4h6v2"></path>
-        </svg>
-      </button>
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14H6L5 6"></path>
+            <path d="M10 11v6"></path>
+            <path d="M14 11v6"></path>
+            <path d="M9 6V4h6v2"></path>
+          </svg>
+        </button>
+
+      </div>
     `;
-    todoListHtml = todoListHtml + html;
+
+    todoListHtml += html;
   }
 
-  // put the html on the webpage
-  document.querySelector('.js-todos')
-    .innerHTML = todoListHtml;
+  document.querySelector('.js-todos').innerHTML = todoListHtml;
 }
 
+
+
 function addButton() {
-  // Get the todo input
   const inputElement = document.querySelector('.inputBox');
+  const todoName = inputElement.value.trim();
 
-  const todoName = inputElement.value;
-
-  // Prevent empty todos
-  if (todoName.trim() === '') {
+  if (todoName === '') {
     return;
   }
 
   myTodo.push({
     name: todoName,
-    dueDate: '', // No date input anymore
+    time: dayjs().format('h:mm A'),
     completed: false
   });
 
-  // Clear the input after adding the todo
-  inputElement.value = '';
+  // Save todos in localStorage
+  localStorage.setItem('myTodo', JSON.stringify(myTodo));
 
-  // Update the webpage
+  inputElement.value = '';
   renderTodoList();
 }
+
 
 function toggleTodo(index) {
   myTodo[index].completed = !myTodo[index].completed;
 
+  localStorage.setItem('myTodo', JSON.stringify(myTodo));
   renderTodoList();
 }
+
+function deleteTodo(index) {
+  myTodo.splice(index, 1);
+
+  localStorage.setItem('myTodo', JSON.stringify(myTodo));
+  renderTodoList();
+}
+
+// Handle checkbox clicks and delete button clicks
+document.querySelector('.js-todos').addEventListener('click', (event) => {
+  const deleteButton = event.target.closest('.delete-button');
+
+  if (deleteButton) {
+    deleteTodo(Number(deleteButton.dataset.index));
+  }
+});
+
+document.querySelector('.js-todos').addEventListener('change', (event) => {
+  if (event.target.classList.contains('todo-checkbox')) {
+    toggleTodo(Number(event.target.dataset.index));
+  }
+});
+
+// Display saved todos when the page loads
+renderTodoList();
+
 
 // FUNTION TO ADD THE MY TODOLIST ON THE PAGE WHEN THE ENTER BUTTON IS PRESSED
 function renderTodoWithEnterKey(event) {

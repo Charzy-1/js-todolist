@@ -29,6 +29,7 @@
 h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 700;
+  
 }
 
 p {
@@ -54,7 +55,7 @@ body {
  /* CONTENT STYLE BEGINS */
  h2 {
   text-transform: uppercase;
-  color: var(--cyan-80);
+  letter-spacing: 3px;
  }
  
 .wrapper {
@@ -66,23 +67,79 @@ body {
   box-shadow: var(--shadow);
 }
 
-.inputContainer,
-.todos-grid {
+.inputContainer {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: var(--space-2);
   align-items: center;
-  margin: var(--space-1) 0;
 }
 
 .todos-grid {
-  /* align-items: stretch; */
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
 }
 
-.inputContainer {
-  margin: var(--space-2) 0 var(--space-1);
+.todo-item {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
 }
+
+.todo-details {
+  min-width: 0;
+}
+
+.todo-name {
+  overflow-wrap: anywhere;
+}
+
+.todo-time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.todo-item.completed .todo-name {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 22px;
+  height: 22px;
+  border: 2px solid #b0b0b0;
+  border-radius: 7px;
+
+  background-color: white;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+/* Green when checked */
+.todo-checkbox:checked {
+  background-color: var(--cyan-800);
+}
+
+/* White checkmark */
+.todo-checkbox:checked::after {
+  content: "✓";
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+}
+
 
 .delete-button {
   cursor: pointer;
@@ -113,8 +170,6 @@ body {
   width: 50px;
   padding: 0;
 }
-
-
 
 .completed {
   text-decoration: line-through;

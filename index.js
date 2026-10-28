@@ -3,9 +3,9 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 // GETING TODAY'S DATE USING DAY JS XTERNAL LIBRARY
 const today = dayjs();
 
-// Adding 7 days to today's date using .add
-const deliveryDate = today.add(7, 'days');
-console.log(deliveryDate.format('dddd, MMMM D'));
+const todayDate = document.querySelector('.today');
+
+todayDate.innerHTML = today.format('MMMM D, YYYY');
 
 
 // Create and empty array to store todos
@@ -97,3 +97,16 @@ function renderTodoWithEnterKey(event) {
     addButton()
   }
 }
+
+// 1. Handle clicking the "Add" button
+document.querySelector('.add-button').addEventListener('click', () => {
+  addButton();
+});
+
+// 2. Handle pressing the "Enter" key in the input box
+document.querySelector('.name-input').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    // Call whatever logic you need here, or call addButton() directly if that's the goal!
+    addButton(); 
+  }
+});

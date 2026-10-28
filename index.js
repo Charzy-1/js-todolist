@@ -1,3 +1,13 @@
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+
+// GETING TODAY'S DATE USING DAY JS XTERNAL LIBRARY
+const today = dayjs();
+
+// Adding 7 days to today's date using .add
+const deliveryDate = today.add(7, 'days');
+console.log(deliveryDate.format('dddd, MMMM D'));
+
+
 // Create and empty array to store todos
 const myTodo = [];
 

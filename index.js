@@ -110,3 +110,22 @@ document.querySelector('.name-input').addEventListener('keydown', (event) => {
     addButton(); 
   }
 });
+
+document.querySelector('.anchors')
+
+const buttons = document.querySelectorAll('.anchor-btn');
+
+// Loop Throught the buttons to add a a reversed style when any of the buttons is clicked
+buttons.forEach((button) => {
+  button.addEventListener('click',(event) => {
+    // Prevent the default anchor behavior (jumping/refreshing the page)
+    event.preventDefault(); 
+
+    // Remove 'reversed' from all buttons
+    buttons.forEach((btn) => {
+      btn.classList.remove('reversed');
+    });
+    
+    button.classList.toggle('reversed');
+  })
+})

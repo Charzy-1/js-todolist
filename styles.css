@@ -35,15 +35,8 @@ p {
   margin-bottom: var(--space-2);
 }
 
-a { 
-  color: inherit; 
+a {
   text-decoration: none;
-  background: var(--cyan-800);
-  margin: 2px;
-  display: inline-block; 
-  padding: 8px 16px; 
-  border-radius: 4px; 
-  cursor: pointer;
  }
 
 body {
@@ -65,9 +58,6 @@ body {
  }
  
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-content: center;
   height: 100vh;
   max-width: 500px;
@@ -97,8 +87,7 @@ body {
 .delete-button {
   cursor: pointer;
   padding: 10px 15px;
-  color: white;
-  background: red;
+  color: red;
   font-weight: bolder;
   font-size: 15px;
   border: none;
@@ -111,7 +100,6 @@ body {
 }
 
 .add-button{
-  /* background-color: green; */
   border: none;
   padding: 10px 15px;
   color: var(--green-950);
@@ -122,4 +110,27 @@ body {
 
 .completed {
   text-decoration: line-through;
+}
+
+.anchors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-1);
+}
+
+.anchor-btn {
+  color: inherit;
+  background: white;
+  padding: 8px 12px; 
+  border-radius: 4px; 
+  cursor: pointer;
+  text-align: center;
+  font-size: 15px;
+}
+
+.reversed {
+  color: white;
+  background: var(--cyan-800);
+  font-weight: 700;
+  box-shadow: var(--shadow);
 }

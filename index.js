@@ -61,28 +61,27 @@ function renderTodoList() {
 }
 
 function addButton() {
-  // Get hold of the todos from the user
-  const inputElement = document.querySelector('.inputBox');const dateElement = document.querySelector('.dateBox');
+  // Get the todo input
+  const inputElement = document.querySelector('.inputBox');
 
   const todoName = inputElement.value;
-  const dueDate = dateElement.value;
 
-  // TO AVOID USERS ADDING EMPTY INPUT
-  if (todoName === '') {
+  // Prevent empty todos
+  if (todoName.trim() === '') {
     return;
   }
 
   myTodo.push({
     name: todoName,
-    dueDate: dueDate,
+    dueDate: '', // No date input anymore
     completed: false
   });
 
-  // Clear the textbox after adding the todo
+  // Clear the input after adding the todo
   inputElement.value = '';
-  dateElement.value = '';
 
-  renderTodoList()
+  // Update the webpage
+  renderTodoList();
 }
 
 function toggleTodo(index) {

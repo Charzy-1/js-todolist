@@ -69,8 +69,8 @@ body {
 .inputContainer,
 .todos-grid {
   display: grid;
-   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-1);
+  grid-template-columns: minmax(0, 1fr) auto;;
+  gap: var(--space-2);
   align-items: center;
   margin: var(--space-1) 0;
 }
@@ -93,20 +93,28 @@ body {
   border: none;
 }
 
-.name-input,
-.date-input {
+.name-input {
   font-size: 15px;
-  padding: 6px
+  padding: 10px 3px;
+  border: none;
+  box-shadow: var(--shadow);
 }
 
 .add-button{
+  border-radius: 50%;
   border: none;
-  padding: 10px 15px;
-  color: var(--green-950);
+  padding: 0;
+  color: var(--background);
+  background: var(--cyan-800);
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
+  height: 50px;
+  width: 50px;
+  padding: 0;
 }
+
+
 
 .completed {
   text-decoration: line-through;
